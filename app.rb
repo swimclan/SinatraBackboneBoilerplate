@@ -14,3 +14,7 @@ end
 get '/3' do
 	erb :three
 end
+
+get '/4' do
+	erb :four
+end

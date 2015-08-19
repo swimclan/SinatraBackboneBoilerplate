@@ -1,0 +1,30 @@
+<h1>Exercise 4</h1>
+
+<h3>Hello Backbone! Time to define views inside of you!</h3>
+
+<section id="container">
+	
+</section>
+
+
+<script type="text/javascript">
+	var app = app || {};
+	app.listItemView = Backbone.View.extend({
+		initialize: function() {
+			console.log('welcome to the new view for list items...');
+			console.log('content should be rendered in ' + this.$el);
+		},
+		render: function() {
+			console.log('printing list items to the screen when listItem is invoked');
+			this.$el.html('<img src="http://beecontrolnw.com/communities/6/000/001/657/106//images/9198837.jpg" />');
+
+		},
+		el: $('#container')
+	});
+
+	listItem = new app.listItemView();
+	listItem.render();
+
+</script>
+
+
