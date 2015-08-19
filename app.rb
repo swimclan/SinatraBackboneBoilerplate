@@ -10,3 +10,7 @@ Bundler.require
 get '/' do
 	erb :index
 end
+
+get '/3' do
+	erb :three
+end

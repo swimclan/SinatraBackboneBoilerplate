@@ -1,0 +1,36 @@
+<h1>Exercise 3</h1>
+
+<h3>Using Templates With a List of Data</h3>
+
+<p id="content">
+	
+</p>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		var stories = [
+		  {name: 'Sonju took over the world', priority: 'AWESOME'},
+		  {name: 'Brad and Isaac buy out Last.fm', priority: 'BODACIOUS'},
+		  {name: 'David Hayes reaches the moon', priority: 'RADICAL'},
+		  {name: 'James goes one day without falling', priority: 'WIN'},
+		  {name: 'Billionaire Kate buys GChat', priority: 'MOST EXCELLENT'},
+		  {name: 'Tim Rourke replaces Slack with RChat', priority: 'KICKASS'}
+		];
+
+		var storyTemplate = _.template($('#story').html());
+		console.log(typeof storyTemplate);
+
+		stories.forEach(function(story) {
+			var renderedStory = storyTemplate(story)
+			$('#content').append('<h5>' + renderedStory +'</h5>');
+		});
+	});
+
+</script>
+
+<script type="text/template" id="story">
+
+	<%%= name %>, <%%= priority %>
+
+</script>
+
