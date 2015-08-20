@@ -1,0 +1,30 @@
+<h1>Exercise 7</h1>
+
+<h3> My Backbone Models!</h3>
+
+<p>Create a namespace for your own model.  Create the model with a URL and then fetch all the data, then console.log that shit!</p>
+
+<section id="container">
+	
+</section>
+
+<script type="text/javascript">
+	//namespace
+	var chicagoStreetsApp = chicagoStreetsApp || {};
+
+	ChicagoStreetsModel = Backbone.Model.extend({
+		url: "https://data.cityofchicago.org/resource/i6bp-fvbx.json",
+		initialize: function() {
+			console.log('the model was generated');
+			this.on('change', function(event) {
+				console.log('you got yourself a changed model!')
+				//console.log(this.attributes);
+			});
+		}
+	});
+
+	streets = new ChicagoStreetsModel;
+	allStreets = streets.fetch().attributes;
+	console.log(allStreets);
+
+</script>

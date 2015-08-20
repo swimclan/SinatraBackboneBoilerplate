@@ -1,0 +1,51 @@
+<h1>Exercise 8</h1>
+
+<h3> Rendering Backbone Models in a View!</h3>
+
+<div class="movie">
+	
+</div>
+
+<script type='text/javascript'>
+	var movieApp = movieApp || {};
+	movieApp.movieViewClass = Backbone.View.extend ({
+		initialize: function() {
+			var self = this;
+			console.log('We ahave initialized the movie view!');
+			this.model.on('change', function() {
+				self.render();
+			});
+		},
+		render: function() {
+			console.log('About to render this thing.. Here we go!');
+			var data = this.model.attributes;
+			this.$el.html('Movie: ' + data.Title + ' was released in ' + data.Year);
+		},
+		el: $('.movie')
+	});
+
+	movieApp.movieModelClass = Backbone.Model.extend({
+		initialize: function(movie) {
+			console.log("this movie model just rocked it")
+			this.url = "http://www.omdbapi.com/?t=" + encodeURIComponent(movie) + "&y=&plot=short&r=json";
+			console.log(this.url);
+		}
+
+	});
+
+	$(document).ready(function() {
+		movieApp.movieModel = new movieApp.movieModelClass('The Big Chill');
+		movieApp.movieView = new movieApp.movieViewClass({
+			el: $('.movie'),
+			model: movieApp.movieModel
+		});
+		movieApp.movieModel.fetch();
+	});
+
+</script>
+
+<script type="text/template">
+	<%%=  %>
+
+
+</script>
