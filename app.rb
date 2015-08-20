@@ -39,6 +39,10 @@ get '/8' do
 	erb :eight
 end
 
+get '/9' do
+	erb :nine
+end
+
 ## API FILES
 
 ## GET
@@ -51,19 +55,23 @@ get '/api/instafake/:id' do
 end
 ## CREATE
 post '/api/instafake' do
-	post_params = {:username => params[:username], :post => params[:post], :description => params[:description], :hashtags => params[:hashtags]}
-	InstagramModel.create(post_params).to_json
+	request_body = JSON.parse(request.body.read.to_s)
+	post_params = {:username => request_body[:username], :post => request_body[:post], :description => request_body[:description], :hashtags => request_body[:hashtags]}
+	InstagramModel.create(request_body).to_json
 end
 ## UPDATE
 put '/api/instafake/:id' do
-	InstagramModel.find(params[:id]).update(:username => params[:username], :post => params[:post], :description => params[:description], :hashtags => params[:hashtags]).to_json
+	request_body = JSON.parse(request.body.read.to_s)
+	InstagramModel.find(request_body[:id]).update(:username => request_body[:username], :post => request_body[:post], :description => request_body[:description], :hashtags => request_body[:hashtags]).to_json
 end
 
 patch '/api/instafake/:id' do
-	InstagramModel.find(params[:id]).update(:username => params[:username], :post => params[:post], :description => params[:description], :hashtags => params[:hashtags]).to_json
+	request_body = JSON.parse(request.body.read.to_s)
+	InstagramModel.find(request_body[:id]).update(:username => request_body[:username], :post => request_body[:post], :description => request_body[:description], :hashtags => request_body[:hashtags]).to_json
 end
 
 ## DELETE
 delete '/api/instafake/:id' do
-	InstagramModel.find(params[:id]).destroy.to_json	
+	request_body = JSON.parse(request.body.read.to_s)
+	InstagramModel.find(request_body[:id]).destroy.to_json	
 end

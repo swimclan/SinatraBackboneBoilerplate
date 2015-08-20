@@ -1,0 +1,28 @@
+<h1>Exercise 9</h1>
+
+<p>We are gonna read some views.  The instagram API that we made!</p>
+
+
+<script type="text/javascript">
+	var insta = insta || {};
+
+	insta.model = Backbone.Model.extend({
+		initialize: function() {
+			console.log('An instafake with an id of ' + this.get('id') + ' was just created!')
+		}
+	});
+
+	insta.collection = Backbone.Collection.extend({
+		model: insta.model,
+		url: '/api/instafake', 
+		initialize: function() {
+			console.log('The collection has been established')
+			this.fetch();
+		}
+	});
+
+	var photosCollection = new insta.collection();
+
+
+
+</script>
