@@ -10,6 +10,11 @@ ActiveRecord::Base.establish_connection(
 	:adapter => 'postgresql',
 	:database => 'instafake')
 
+## Instafake application
+get '/instafake' do
+	erb :instafake
+end
+
 ## EXERCISE FILES
 
 get '/' do
@@ -56,22 +61,31 @@ end
 ## CREATE
 post '/api/instafake' do
 	request_body = JSON.parse(request.body.read.to_s)
-	post_params = {:username => request_body[:username], :post => request_body[:post], :description => request_body[:description], :hashtags => request_body[:hashtags]}
-	InstagramModel.create(request_body).to_json
+	# request_body = params
+	# binding.pry
+	post_params = {:username => request_body["username"], :post => request_body["post"], :description => request_body["description"], :hashtags => request_body["hashtags"]}
+	puts '------------------post_params--------------------'
+	puts post_params
+	puts '-------------------------------------------------'
+	InstagramModel.create(post_params).to_json
 end
 ## UPDATE
 put '/api/instafake/:id' do
 	request_body = JSON.parse(request.body.read.to_s)
-	InstagramModel.find(request_body[:id]).update(:username => request_body[:username], :post => request_body[:post], :description => request_body[:description], :hashtags => request_body[:hashtags]).to_json
+	post_params = {:username => request_body["username"], :post => request_body["post"], :description => request_body["description"], :hashtags => request_body["hashtags"]}
+	@photo = InstagramModel.find(params[:id])
+	@photo.update(post_params).to_json
 end
 
 patch '/api/instafake/:id' do
 	request_body = JSON.parse(request.body.read.to_s)
-	InstagramModel.find(request_body[:id]).update(:username => request_body[:username], :post => request_body[:post], :description => request_body[:description], :hashtags => request_body[:hashtags]).to_json
+	post_params = {:username => request_body["username"], :post => request_body["post"], :description => request_body["description"], :hashtags => request_body["hashtags"]}
+	@photo = InstagramModel.find(params[:id])
+	@photo.update(post_params).to_json
 end
 
 ## DELETE
 delete '/api/instafake/:id' do
 	request_body = JSON.parse(request.body.read.to_s)
-	InstagramModel.find(request_body[:id]).destroy.to_json	
+	InstagramModel.find(params[:id]).destroy.to_json	
 end

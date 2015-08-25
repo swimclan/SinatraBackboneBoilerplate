@@ -1,0 +1,58 @@
+<script type="text/template" id='table-row-template'>
+  <tr>
+    <td>
+      <%%= username %>
+    </td>
+    <td>
+      <img src="<%%= post %>" />
+    </td>
+    <td>
+      <%%= description %>
+    </td>
+    <td>
+      <%%= hashtags %>
+    </td>
+    <td>
+      <%%= id %>
+    </td>
+  </tr>
+</script>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-MfvZlkHCEqatNoGiOXveE8FIwMzZg4W85qfrfIFBfYc= sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+<h1>Instafaaaaake</h1>
+<h3>The Text-based way to be hip</h3>
+<button id='refresh-instafake' type="submit" class="btn btn-default">Refresh Instafake</button>
+<section>
+  <h4>Create Instafake</h4>
+  <div class="form-group">
+    <label for="username">Username</label>
+    <input type="text" class="form-control" id="username" placeholder="cecelious">
+  </div>
+  <div class="form-group">
+    <label for="post">Post</label>
+    <input type="text" class="form-control" id="post" placeholder="image name">
+  </div>
+  <div class="form-group">
+    <label for="description">Description</label>
+    <input type="text" class="form-control" id="description" placeholder="What is going on?">
+  </div>
+  <div class="form-group">
+    <label for="hashtags">Hashtags</label>
+    <input type="text" class="form-control" id="hashtags" placeholder="#hashtag #yolo #swag">
+  </div>
+  <button id='add-instafake' type="submit" class="btn btn-default">Create Instafake</button>
+</section>
+<table class='table table-striped'>
+  <thead>
+    <tr>
+      <th>Username</th>
+      <th>Post</th>
+      <th>Description</th>
+      <th>Hashtags</th>
+      <th>Remove?</th>
+    </tr>
+  </thead>
+  <tbody id='instafakes'>
+    <!-- all of my instafakes will go in here! -->
+  </tbody>
+</table>
+<script type="text/javascript" src='/scripts/instafake.js'></script>
